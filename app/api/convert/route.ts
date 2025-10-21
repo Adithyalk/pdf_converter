@@ -6,15 +6,26 @@ import { Document, Packer, Paragraph, TextRun } from 'docx'
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
-    const file = formData.get('file') as File
+    const file = formData.get('file')
     const conversionType = formData.get('conversionType') as string
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 })
     }
 
-    const buffer = await file.arrayBuffer()
-    const fileName = file.name.split('.')[0]
+    // Handle different file types
+    let buffer: ArrayBuffer
+    let fileName: string
+
+    if (file instanceof File) {
+      buffer = await file.arrayBuffer()
+      fileName = file.name.split('.')[0]
+    } else if (file instanceof Blob) {
+      buffer = await file.arrayBuffer()
+      fileName = 'converted_file'
+    } else {
+      return NextResponse.json({ error: 'Invalid file type' }, { status: 400 })
+    }
 
     if (conversionType === 'pdf-to-docx') {
       // Convert PDF to DOCX

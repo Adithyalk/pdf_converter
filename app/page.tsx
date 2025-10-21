@@ -236,7 +236,7 @@ export default function Home() {
                         <div>
                           <p className="font-medium text-gray-800">{file.name}</p>
                           <p className="text-sm text-gray-500">
-                            {(file.size / 1024 / 1024).toFixed(2)} MB
+                            {file.size ? (file.size / 1024 / 1024).toFixed(2) : 'Unknown'} MB
                           </p>
                         </div>
                       </div>
