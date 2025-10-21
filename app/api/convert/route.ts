@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument, rgb } from 'pdf-lib'
 import mammoth from 'mammoth'
 import { Document, Packer, Paragraph, TextRun } from 'docx'
 
@@ -119,7 +119,7 @@ async function convertDocxToPdf(docxBuffer: ArrayBuffer): Promise<Buffer> {
         x: 50,
         y: yPosition,
         size: fontSize,
-        color: { type: 'rgb', red: 0, green: 0, blue: 0 },
+        color: rgb(0, 0, 0),
       })
 
       yPosition -= fontSize + 5
@@ -130,7 +130,7 @@ async function convertDocxToPdf(docxBuffer: ArrayBuffer): Promise<Buffer> {
       x: 50,
       y: height - 30,
       size: 16,
-      color: { type: 'rgb', red: 0.2, green: 0.4, blue: 0.8 },
+      color: rgb(0.2, 0.4, 0.8),
     })
 
     const pdfBytes = await pdfDoc.save()
