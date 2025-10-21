@@ -117,7 +117,7 @@ async function convertDocxToPdf(docxBuffer: ArrayBuffer): Promise<Buffer> {
         x: 50,
         y: yPosition,
         size: fontSize,
-        color: { r: 0, g: 0, b: 0 },
+        color: { red: 0, green: 0, blue: 0 },
       })
 
       yPosition -= fontSize + 5
@@ -128,7 +128,7 @@ async function convertDocxToPdf(docxBuffer: ArrayBuffer): Promise<Buffer> {
       x: 50,
       y: height - 30,
       size: 16,
-      color: { r: 0.2, g: 0.4, b: 0.8 },
+      color: { red: 0.2, green: 0.4, blue: 0.8 },
     })
 
     const pdfBytes = await pdfDoc.save()
