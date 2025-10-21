@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/80 hover:bg-white text-gray-700 font-semibold py-3 px-6 rounded-xl border border-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-md;
+  }
+  
+  .card {
+    @apply glass-effect rounded-2xl p-6 shadow-xl;
+  }
+  
+  .dropzone {
+    @apply border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors duration-300 rounded-xl p-8 text-center cursor-pointer hover:bg-blue-50/50;
+  }
+  
+  .dropzone-active {
+    @apply border-blue-500 bg-blue-50/80;
+  }
+}
