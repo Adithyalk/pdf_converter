@@ -39,7 +39,7 @@ A modern, beautiful, and lightning-fast PDF converter built with Next.js, TypeSc
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Adithyalk/pdf_converter.git
    cd pdf_converter
    ```
 
