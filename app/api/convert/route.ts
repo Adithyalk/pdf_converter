@@ -106,18 +106,20 @@ async function convertDocxToPdf(docxBuffer: ArrayBuffer): Promise<Buffer> {
     const lines = text.split('\n')
     let yPosition = height - 50
 
+    let currentPage = page
+    
     for (const line of lines) {
       if (yPosition < 50) {
         // Add new page if needed
-        const newPage = pdfDoc.addPage([595.28, 841.89])
-        yPosition = newPage.getSize().height - 50
+        currentPage = pdfDoc.addPage([595.28, 841.89])
+        yPosition = currentPage.getSize().height - 50
       }
 
-      page.drawText(line, {
+      currentPage.drawText(line, {
         x: 50,
         y: yPosition,
         size: fontSize,
-        color: { red: 0, green: 0, blue: 0 },
+        color: { type: 'rgb', red: 0, green: 0, blue: 0 },
       })
 
       yPosition -= fontSize + 5
@@ -128,7 +130,7 @@ async function convertDocxToPdf(docxBuffer: ArrayBuffer): Promise<Buffer> {
       x: 50,
       y: height - 30,
       size: 16,
-      color: { red: 0.2, green: 0.4, blue: 0.8 },
+      color: { type: 'rgb', red: 0.2, green: 0.4, blue: 0.8 },
     })
 
     const pdfBytes = await pdfDoc.save()
